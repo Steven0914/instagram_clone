@@ -6,7 +6,9 @@ function App() {
   return (
     <>
       <SideBar />
-      <Router />
+      <div className="w-[calc(100vw-300px)]">
+        <Router />
+      </div>
     </>
   );
 }
