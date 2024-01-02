@@ -25,14 +25,14 @@ function Footer() {
   return (
     <footer className="h-[135px] px-16px">
       <div className="flex flex-col mb-[52px]">
-        <div className="flex mt-[24px] h-[23px] text[100%] justify-center">
+        <div className="flex mt-[24px] text-[14px] justify-center flex-wrap ">
           {item.map((v, i) => (
             <Link key={i} to={v.link} className="mb-[12px] mx-[8px]">
               {v.name}
             </Link>
           ))}
         </div>
-        <div className="flex my-[12px] justify-center h-[12px] text[100%]">
+        <div className="flex my-[12px] justify-center h-[12px] text-[14px] flex-wrap">
           <div>한국어</div>
           {/* <div className="ml-[16px]">© 2024 clone-star from 신현욱, 조수빈</div> */}
           <div className="ml-[16px]">© 2024 Instagram from Meta</div>
