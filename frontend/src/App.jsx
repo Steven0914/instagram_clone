@@ -1,10 +1,12 @@
-import { useState } from "react";
 import "./App.css";
+import SideBar from "./components/SideBar.jsx";
+import Router from "./router.jsx";
 
 function App() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline text-red">Hello world!</h1>
+      <SideBar />
+      <Router />
     </>
   );
 }
