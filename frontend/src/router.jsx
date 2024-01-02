@@ -1,13 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-
-import Mypage from "./pages/Mypage";
-import NotFound from "./pages/NotFound";
-
-const routes = [
-  { path: "/", element: <Mypage /> },
-  { path: "/mypage", element: <Mypage /> },
-  { path: "*", element: <NotFound /> },
-];
+import routes from "./routes";
 
 const Router = () => {
   return (
