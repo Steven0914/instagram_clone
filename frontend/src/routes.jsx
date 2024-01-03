@@ -1,12 +1,13 @@
 import Mypage from "./pages/Mypage";
 import NotFound from "./pages/NotFound";
+import Mainpage from "./pages/Mainpage";
+import PostDetail from "./pages/PostDetail";
 
 import searchSVG from "./assets/Search.svg";
 import massageSVG from "./assets/Messenger.svg";
 import addSVG from "./assets/Add.svg";
 import HomeSVG from "./assets/home.svg";
 import userSVG from "./assets/User.svg";
-import Mainpage from "./pages/Mainpage.jsx";
 
 const routes = [
   {
@@ -48,6 +49,13 @@ const routes = [
     korName: "프로필",
     img: userSVG,
     menu: true,
+  },
+  {
+    path: "/posts/:id",
+    element: <PostDetail />,
+    engName: "postDetail",
+    korName: "게시글 디테일",
+    img: HomeSVG,
   },
   {
     path: "*",

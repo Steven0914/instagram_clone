@@ -49,13 +49,11 @@ function Mypage() {
         <header className="flex mb-[40px]">
           <div className="w-[300px] flex justify-center items-center pr-[30px]">
             <div className="max-w-[150px] min-w-[70px] w-full">
-              <div className=" w-full relative pb-[100%]">
-                <div className="absolute w-full h-full rounded-full overflow-hidden">
-                  <img
-                    src="https://dummyimage.com/600x400/000/fff"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+              <div className="relative w-full pb-[100%] rounded-full overflow-hidden">
+                <img
+                  src={"https://dummyimage.com/600x400/000/fff"}
+                  className="w-full h-full object-cover absolute top-0 left-0"
+                />
               </div>
             </div>
           </div>
@@ -64,20 +62,28 @@ function Mypage() {
               <div className="text-[20px]">{data.name}</div>
               {type === 1 && (
                 <div className="flex ml-[12px]">
-                  <ProfileButton
-                    name="프로필 편집"
-                    func={() => {
+                  <ProfileButton name="프로필 편집" />
+                  <img
+                    className="ml-[5px]"
+                    src={SettingSVG}
+                    alt={"setting"}
+                    onClick={() => {
                       setModal(true);
                     }}
                   />
-                  <img className="ml-[5px]" src={SettingSVG} alt={"setting"} />
                 </div>
               )}
               {type === 2 && (
                 <div className="flex ml-[12px]">
-                  <ProfileButton name="팔로잉" />
-                  <ProfileButton name="메시지 보내기" />
-                  <img src={ProfileMoreSVG} alt={"profile more"} />
+                  <ProfileButton name="팔로잉" func={() => {}} />
+                  <ProfileButton name="메시지 보내기" func={() => {}} />
+                  <img
+                    src={ProfileMoreSVG}
+                    alt={"profile more"}
+                    onClick={() => {
+                      setModal(true);
+                    }}
+                  />
                 </div>
               )}
             </div>
@@ -86,11 +92,21 @@ function Mypage() {
                 <span className="font-[400] mr-1">게시물</span>
                 <span>{data.totalContent}</span>
               </div>
-              <div className="flex mr-[40px] items-center text-[14px]">
+              <div
+                className="flex mr-[40px] items-center text-[14px]"
+                onClick={() => {
+                  setModal(true);
+                }}
+              >
                 <span className="font-[400] mr-1">팔로워</span>
                 <span>{data.followers}</span>
               </div>
-              <div className="flex mr-[40px] items-center text-[14px] ">
+              <div
+                className="flex mr-[40px] items-center text-[14px] "
+                onClick={() => {
+                  setModal(true);
+                }}
+              >
                 <span className="font-[400] mr-1">팔로잉</span>
                 <span>{data.follings}</span>
               </div>
