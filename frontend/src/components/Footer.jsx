@@ -23,7 +23,7 @@ const item = [
 
 function Footer() {
   return (
-    <footer className="h-[135px] px-16px">
+    <footer className="h-[135px] px-16px font-[300]">
       <div className="flex flex-col mb-[52px]">
         <div className="flex mt-[24px] text-[14px] justify-center flex-wrap ">
           {item.map((v, i) => (
