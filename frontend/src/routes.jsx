@@ -6,11 +6,12 @@ import massageSVG from "./assets/Messenger.svg";
 import addSVG from "./assets/Add.svg";
 import HomeSVG from "./assets/home.svg";
 import userSVG from "./assets/User.svg";
+import Mainpage from "./pages/Mainpage.jsx";
 
 const routes = [
   {
     path: "/",
-    element: <Mypage />,
+    element: <Mainpage />,
     engName: "home",
     korName: "홈",
     img: HomeSVG,
