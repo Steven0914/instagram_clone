@@ -86,3 +86,23 @@ textarea,
 select {
   font-family: "Noto Sans KR", sans-serif;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  border-radius: 5px;
+  background-clip: padding-box;
+  border: 3px solid transparent;
+}

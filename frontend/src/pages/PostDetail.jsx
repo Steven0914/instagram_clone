@@ -3,6 +3,7 @@ import Mypage from "./Mypage";
 import Modal from "../components/Modal";
 
 import XBtnSVG from "../assets/x-btn.svg";
+import Icon from "../components/Icon";
 
 function PostDetail() {
   const [modal, setModal] = useState(true);
@@ -17,19 +18,29 @@ function PostDetail() {
 
   return (
     <>
-      <Modal setModal={setModal} maxWidth={"1562px"} maxHeight={"950px"}>
+      <Modal
+        setModal={setModal}
+        maxWidth={"1568px"}
+        maxHeight={"850px"}
+        marginX={"100px"}
+      >
         <div
           className="fixed top-10 right-10 text-white w-[24px] h-[24px] flex justify-center items-center cursor-pointer"
           onClick={() => setModal(false)}
         >
-          <img
-            src={XBtnSVG}
+          <Icon
+            icon={XBtnSVG}
             alt={"cancle"}
-            className="w-[18px] h-[18px] mr-[6px]"
+            width={"18px"}
+            height={"18px"}
+            marginRight={"6px"}
           />
         </div>
-        <div className=" h-full max-h-[950px] w-[calc(100vw-48px)] max-w-[1562px] flex">
-          <div className="bg-white flex items-center max-w-[950px] min-w-[500px] w-[calc(100vh-48px)]">
+        <div
+          id="postDetail"
+          className=" h-full max-h-[850px] w-[calc(100vw-48px)]  max-w-[1562px] flex"
+        >
+          <div className="bg-white flex items-center max-w-[850px] min-w-[500px] w-[calc(100vh-48px)]">
             <div className="relative w-full overflow-hidden pb-[100%]">
               <img
                 src={"https://dummyimage.com/600x400/000/fff"}

@@ -8,6 +8,11 @@ import ProfileButton from "../components/ProfileButtom";
 import SettingSVG from "../assets/setting.svg";
 import ProfileMoreSVG from "../assets/profile-more.svg";
 import PostsTabSVG from "../assets/posts-tab.svg";
+import Icon from "../components/Icon";
+import ProfileMore from "../components/ProfileMore";
+import { link } from "../utils/utils";
+import EditProfileImg from "../components/EditProfileImg";
+import Following from "../components/Following";
 
 const data = {
   id: "clone-star",
@@ -39,16 +44,32 @@ const posts = [
 
 function Mypage() {
   const [modal, setModal] = useState(false);
+  const [modalType, setModalType] = useState(1); // 1 : editProfileImg, 2 : profileMore, 3 : followers, 4 : following
 
   const type = 1; // 1 - me, 2 - other ==> 토큰 검사
 
   return (
     <>
-      {modal && <Modal setModal={setModal} />}
+      {modal &&
+        (modalType === 1 && type === 1 ? (
+          <EditProfileImg setModal={setModal} />
+        ) : modalType === 2 ? (
+          <ProfileMore type={type} setModal={setModal} />
+        ) : modalType === 3 ? (
+          <Following type={1} setModal={setModal} />
+        ) : modalType === 4 ? (
+          <Following type={2} setModal={setModal} />
+        ) : null)}
       <div className="pt-[30px] px-[20px] max-w-[1024px] mx-auto">
         <header className="flex mb-[40px]">
           <div className="w-[300px] flex justify-center items-center pr-[30px]">
-            <div className="max-w-[150px] min-w-[70px] w-full">
+            <div
+              className="max-w-[150px] min-w-[70px] w-full cursor-pointer"
+              onClick={() => {
+                setModal(true);
+                setModalType(1);
+              }}
+            >
               <div className="relative w-full pb-[100%] rounded-full overflow-hidden">
                 <img
                   src={"https://dummyimage.com/600x400/000/fff"}
@@ -62,13 +83,17 @@ function Mypage() {
               <div className="text-[20px]">{data.name}</div>
               {type === 1 && (
                 <div className="flex ml-[12px]">
-                  <ProfileButton name="프로필 편집" />
-                  <img
-                    className="ml-[5px]"
-                    src={SettingSVG}
+                  <ProfileButton
+                    name="프로필 편집"
+                    func={() => link("/setting")}
+                  />
+                  <Icon
+                    icon={SettingSVG}
                     alt={"setting"}
-                    onClick={() => {
+                    marginLeft={"8px"}
+                    func={() => {
                       setModal(true);
+                      setModalType(2);
                     }}
                   />
                 </div>
@@ -76,12 +101,16 @@ function Mypage() {
               {type === 2 && (
                 <div className="flex ml-[12px]">
                   <ProfileButton name="팔로잉" func={() => {}} />
-                  <ProfileButton name="메시지 보내기" func={() => {}} />
-                  <img
-                    src={ProfileMoreSVG}
+                  <ProfileButton
+                    name="메시지 보내기"
+                    func={() => link("/massage")}
+                  />
+                  <Icon
+                    icon={ProfileMoreSVG}
                     alt={"profile more"}
-                    onClick={() => {
+                    func={() => {
                       setModal(true);
+                      setModalType(2);
                     }}
                   />
                 </div>
@@ -93,18 +122,20 @@ function Mypage() {
                 <span>{data.totalContent}</span>
               </div>
               <div
-                className="flex mr-[40px] items-center text-[14px]"
+                className="flex mr-[40px] items-center text-[14px] cursor-pointer"
                 onClick={() => {
                   setModal(true);
+                  setModalType(3);
                 }}
               >
                 <span className="font-[400] mr-1">팔로워</span>
                 <span>{data.followers}</span>
               </div>
               <div
-                className="flex mr-[40px] items-center text-[14px] "
+                className="flex mr-[40px] items-center text-[14px] cursor-pointer"
                 onClick={() => {
                   setModal(true);
+                  setModalType(4);
                 }}
               >
                 <span className="font-[400] mr-1">팔로잉</span>

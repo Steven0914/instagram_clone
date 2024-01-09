@@ -10,14 +10,12 @@ function ProfileButton({ name, func }) {
   };
 
   return (
-    <>
-      <button
-        className="bg-[#efefef] px-[16px] py-[7px] rounded-[8px] ml-[8px]"
-        onClick={() => onClick()}
-      >
-        {name}
-      </button>
-    </>
+    <button
+      className="bg-[#efefef] hover:bg-gray-200 px-[16px] py-[7px] rounded-[8px] ml-[8px] cursor-pointer"
+      onClick={() => onClick()}
+    >
+      {name}
+    </button>
   );
 }
 

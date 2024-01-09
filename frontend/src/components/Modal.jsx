@@ -1,6 +1,13 @@
 import { useEffect } from "react";
 
-function Modal({ setModal, children, width, height, maxWidth, maxHeight }) {
+function Modal({
+  setModal,
+  children,
+  maxWidth,
+  maxHeight,
+  marginX,
+  borderRadius,
+}) {
   const exit = () => {
     if (setModal) setModal(false);
   };
@@ -11,8 +18,11 @@ function Modal({ setModal, children, width, height, maxWidth, maxHeight }) {
         <div
           className="z-50 bg-white m-[20px]"
           style={{
+            borderRadius: borderRadius ? borderRadius : "0px",
             width: "100%",
             height: "auto",
+            marginLeft: marginX ? marginX : "20px",
+            marginRight: marginX ? marginX : "20px",
             maxWidth: maxWidth ? maxWidth : "500px",
             maxHeight: maxHeight ? maxHeight : "500px",
           }}
