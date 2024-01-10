@@ -21,12 +21,8 @@ function SideBar() {
     <div className="w-[80px] border-r-2">
       <div className="mt-10 ml-3">
         <Link to={"/"}>
-          <div className="w-[50px] h-[50px] rounded hover:bg-gray-200">
-            <img
-              src={logo2}
-              alt={"clone-star"}
-              className="w-[23px] h-[23px] ml-3 mt-2"
-            />
+          <div className="w-[50px] h-[50px] rounded hover:bg-gray-200 flex justify-center items-center">
+            <img src={logo2} alt={"clone-star"} className="w-[23px] h-[23px]" />
           </div>
         </Link>
         <div className="mt-7"></div>
@@ -45,10 +41,14 @@ function SideBar() {
       </div>
     </div>
   ) : (
-    <div className="sticky top-0 h-[100vh] w-[250px] pt-[8px] pb-[20px] px-[12px] border-r-2">
-      <div className="pt-[25px] pb-[16px] px-[12px] mb-[19px]">
-        <img src={logo} alt={"clone-star"} />
-      </div>
+    <div className="sticky top-0 h-[100vh] w-[250px] pt-10 pb-[20px] px-[12px] border-r-2">
+      {/* <div className="pt-[25px] pb-[16px] px-[12px] mb-[19px]"><img src={logo} alt={"clone-star"} /></div> */}
+      <Link to={"/"}>
+        <div className="h-[50px] flex items-center px-[12px] ">
+          <img src={logo} alt={"clone-star"} />
+        </div>
+      </Link>
+      <div className="mt-7"></div>
       <div className="h-[calc(100%-77px-28px)] flex flex-col justify-between">
         <div>
           {routes.map(
