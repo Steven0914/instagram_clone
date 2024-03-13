@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../components/Footer.jsx";
 
 import heartSVG from "../assets/post/heart.svg";
@@ -35,27 +35,52 @@ const DummyData = [
 ];
 
 function Mainpage() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    await fetch("http://127.0.0.1:8000/hello", {
+      headers: {
+        Accept: "application / json",
+      },
+      method: "GET",
+    })
+      .then((response) => {
+        response.json().then((json) => {
+          console.log(json);
+          setData(json);
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        setData(DummyData);
+      });
+  };
+
   return (
     <>
       <div className="pt-[30px] px-[20px] max-w-[1024px] mx-auto flex">
         <div className="w-[calc(100%-300px)]">
           {/* 스토리 부분 */}
 
-          {DummyData.map((data) => (
-            <div key={data.id} className="max-w-xl mx-auto">
+          {data.map((data1) => (
+            <div key={data1.id} className="max-w-xl mx-auto">
               <div className="border-b border-gray-200">
                 <div className="flex items-center justify-between p-3">
                   <div className="flex items-center space-x-3">
                     <img
-                      src={data.authorImage}
+                      src={data1.authorImage}
                       alt="Profile"
                       className="w-9 h-9 rounded-full"
                     />
-                    <p className="font-semibold">{data.author}</p>
+                    <p className="font-semibold">{data1.author}</p>
                   </div>
                   <p className="text-sm text-gray-500 flex items-center space-x-2">
                     <span>•</span>
-                    <span>{data.time}</span>
+                    <span>{data1.time}</span>
                     <span>•</span>
                     <button className="text-blue-500">Follow</button>
                   </p>
@@ -65,7 +90,7 @@ function Mainpage() {
                 alt="Post content"
                 className="w-full"
                 height="500"
-                src={data.postImage}
+                src={data1.postImage}
                 style={{
                   aspectRatio: "768/500",
                   objectFit: "cover",
@@ -84,12 +109,12 @@ function Mainpage() {
                 <p className="font-semibold">liked_by_user and others</p>
                 <div className="space-y-2">
                   <div>
-                    <span className="font-semibold">{data.author} </span>
-                    <span>{data.postContent}</span>
+                    <span className="font-semibold">{data1.author} </span>
+                    <span>{data1.postContent}</span>
                   </div>
                   <div>
-                    <span className="font-semibold">{data.commentAuthor}</span>
-                    <span>{data.comment}</span>
+                    <span className="font-semibold">{data1.commentAuthor}</span>
+                    <span>{data1.comment}</span>
                   </div>
                 </div>
                 <p className="text-sm text-gray-500 pt-2">View all comments</p>

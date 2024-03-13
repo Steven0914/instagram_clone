@@ -49,9 +49,8 @@ function Footer({ type }) {
           }
         >
           {item[type].map((v, i) => (
-            <>
+            <div key={i}>
               <Link
-                key={i}
                 to={v.link}
                 className={
                   type !== 0
@@ -64,7 +63,7 @@ function Footer({ type }) {
               {type !== 0 && (
                 <span className="after:content-['·'] after:mx-[3px] last:after:content-none"></span>
               )}
-            </>
+            </div>
           ))}
         </div>
         <div
