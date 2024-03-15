@@ -1,27 +1,53 @@
-# from sqlalchemy.orm import Session
-# from app.models import Item
-# from app.schema import ItemCreate
+import datetime
 
-# def get_items(db: Session):
-#     return db.query(Item).all()
-#
-# def get_item(db: Session, item_id: int):
-#     return db.query(Item).filter(Item.id == item_id).first()
-#
-# def create_item(db: Session, item: ItemCreate):
-#     db_item = Item(**item.dict())
-#     db.add(db_item)
-#     db.commit()
-#     db.refresh(db_item)
-#     return db_item
-#
-# def update_item(db: Session, item: Item, updated_item: ItemCreate):
-#     for key, value in updated_item.dict().items():
-#         setattr(item, key, value)
-#     db.commit()
-#     db.refresh(item)
-#     return item
-#
-# def delete_item(db: Session, item: Item):
-#     db.delete(item)
-#     db.commit()
+from sqlalchemy.orm import Session
+from app.models import User, Post
+from app.schema import UserCreate, PostCreate
+
+def get_users(db: Session):
+    return db.query(User).all()
+
+def get_user(db: Session, id: int):
+    return db.query(User).filter(User.id == id).first()
+
+def create_user(db: Session, user: UserCreate):
+    db_user = User(**user.dict())
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
+
+def update_user(db: Session, user: User, updated_user: UserCreate):
+    for key, value in updated_user.dict().items():
+        setattr(user, key, value)
+    db.commit()
+    db.refresh(user)
+    return user
+
+def delete_user(db: Session, user: User):
+    db.delete(user)
+    db.commit()
+
+# post
+
+def get_post(db: Session, id: int):
+    return db.query(Post).filter(Post.id == id).first()
+
+
+def create_post(db: Session, post: PostCreate):
+    db_post = Post(**post.dict(),create_date=datetime.datetime.now())
+    db.add(db_post)
+    db.commit()
+    db.refresh(db_post)
+    return db_post
+
+def update_item(db: Session, post: Post, updated_post: PostCreate):
+    for key, value in updated_post.dict().items():
+        setattr(post, key, value)
+    db.commit()
+    db.refresh(post)
+    return post
+
+def delete_item(db: Session, post: Post):
+    db.delete(post)
+    db.commit()
