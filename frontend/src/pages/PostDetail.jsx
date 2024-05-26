@@ -7,6 +7,7 @@ import Icon from "../components/Icon";
 
 function PostDetail() {
   const [modal, setModal] = useState(true);
+  const [img, setImg] = useState();
 
   useEffect(() => {
     if (!modal) {
@@ -16,13 +17,17 @@ function PostDetail() {
     }
   }, [modal]);
 
+  // useEffect(() => {
+  //   setImg(postImg.)
+  // }, [postImg]);
+
   return (
     <>
       <Modal
         setModal={setModal}
-        maxWidth={"1568px"}
-        maxHeight={"850px"}
-        marginX={"100px"}
+        maxWidth={"1050px"}
+        maxHeight={"680px"}
+        marginX={"80px"}
       >
         <div
           className="fixed top-10 right-10 text-white w-[24px] h-[24px] flex justify-center items-center cursor-pointer"
@@ -38,9 +43,12 @@ function PostDetail() {
         </div>
         <div
           id="postDetail"
-          className=" h-full max-h-[850px] w-[calc(100vw-48px)]  max-w-[1562px] flex"
+          className=" h-full max-h-[680px] w-[calc(100vw-160px)] min-w-[800px] flex"
         >
-          <div className="bg-white flex items-center max-w-[850px] min-w-[500px] w-[calc(100vh-48px)]">
+          <div
+            className="bg-white flex items-center max-w-[680px] min-w-[500px] w-[calc(100vh-48px)]"
+            id="postImg"
+          >
             <div className="relative w-full overflow-hidden pb-[100%]">
               <img
                 src={"https://dummyimage.com/600x400/000/fff"}
@@ -48,7 +56,7 @@ function PostDetail() {
               />
             </div>
           </div>
-          <div className="min-w-[500px]">post</div>
+          <div className="min-w-[300px] max-w-[600px]">post</div>
         </div>
       </Modal>
       <Mypage />

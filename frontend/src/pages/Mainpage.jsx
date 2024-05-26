@@ -1,48 +1,42 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Footer from "../components/Footer.jsx";
 
 import heartSVG from "../assets/post/heart.svg";
+import heartRSVG from "../assets/post/heart_r.svg";
 import chatSVG from "../assets/post/chat.svg";
 import dmSVG from "../assets/post/dm.svg";
 import bookmarkSVG from "../assets/post/bookmark.svg";
+import userSVG from "../assets/default-user.png";
 
 const DummyData = [
   {
     id: 1,
-    author: "작성자1",
-    authorImage:
-      "https://health.chosun.com/site/data/img_dir/2023/07/17/2023071701753_0.jpg",
-    postImage:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq75DiUEnXV_lTKsYK7oLxdoj0cyTeSp6329bGs93wHQ&s",
-    postContent: "리액트 너무 어려워",
-    time: "1h ago",
-    commentAuthor: "댓글 작성자1",
-    comment: "인정!",
-  },
-  {
-    id: 2,
-    author: "작성자2",
-    authorImage:
-      "https://health.chosun.com/site/data/img_dir/2023/07/17/2023071701753_0.jpg",
-    postImage:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq75DiUEnXV_lTKsYK7oLxdoj0cyTeSp6329bGs93wHQ&s",
-    postContent: "리액트 진짜 재밌어",
-    time: "2h ago",
-    commentAuthor: "댓글 작성자2",
-    comment: "재밌다고?",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq75DiUEnXV_lTKsYK7oLxdoj0cyTeSp6329bGs93wHQ&s",
+    content: "리액트 진짜 재밌어",
+    create_date: "2024-03-19T01:56:17", // "2h ago"
+    User: {
+      description: "description",
+      user_id: "user_id",
+      name: "name",
+      img: "https://health.chosun.com/site/data/img_dir/2023/07/17/2023071701753_0.jpg",
+      id: 1,
+    },
+    // commentAuthor: "댓글 작성자2",
+    // comment: "재밌다고?",
   },
 ];
 
 function Mainpage() {
   const [data, setData] = useState([]);
+  const [heart, setHeart] = useState(false);
 
   useEffect(() => {
     getData();
   }, []);
 
   const getData = async () => {
-    await fetch("http://127.0.0.1:8000/hello", {
+    await fetch("http://127.0.0.1:8000/posts", {
       headers: {
         Accept: "application / json",
       },
@@ -60,10 +54,14 @@ function Mainpage() {
       });
   };
 
+  const clickHeart = () => {
+    setHeart(!heart);
+  };
+
   return (
     <>
       <div className="pt-[30px] px-[20px] max-w-[1024px] mx-auto flex">
-        <div className="w-[calc(100%-300px)]">
+        <div className="min-w-[400px] w-[calc(90%)] mx-auto">
           {/* 스토리 부분 */}
 
           {data.map((data1) => (
@@ -72,15 +70,15 @@ function Mainpage() {
                 <div className="flex items-center justify-between p-3">
                   <div className="flex items-center space-x-3">
                     <img
-                      src={data1.authorImage}
+                      src={data1.User ? data1.User.img : userSVG}
                       alt="Profile"
                       className="w-9 h-9 rounded-full"
                     />
-                    <p className="font-semibold">{data1.author}</p>
+                    <p className="font-semibold">{data1.User.user_id}</p>
                   </div>
                   <p className="text-sm text-gray-500 flex items-center space-x-2">
                     <span>•</span>
-                    <span>{data1.time}</span>
+                    <span>{data1.create_date}</span>
                     <span>•</span>
                     <button className="text-blue-500">Follow</button>
                   </p>
@@ -90,7 +88,7 @@ function Mainpage() {
                 alt="Post content"
                 className="w-full"
                 height="500"
-                src={data1.postImage}
+                src={data1.img}
                 style={{
                   aspectRatio: "768/500",
                   objectFit: "cover",
@@ -99,7 +97,21 @@ function Mainpage() {
               />
               <div className="flex items-center justify-between p-3">
                 <div className="flex space-x-4">
-                  <img className="ml-[5px]" src={heartSVG} alt={"heart"} />
+                  {heart ? (
+                    <img
+                      className="ml-[5px] w-[24px]"
+                      src={heartRSVG}
+                      alt={"heart"}
+                      onClick={clickHeart}
+                    />
+                  ) : (
+                    <img
+                      className="ml-[5px]"
+                      src={heartSVG}
+                      alt={"heart"}
+                      onClick={clickHeart}
+                    />
+                  )}
                   <img className="ml-[5px]" src={chatSVG} alt={"comment"} />
                   <img className="ml-[5px]" src={dmSVG} alt={"dm"} />
                 </div>
@@ -109,13 +121,13 @@ function Mainpage() {
                 <p className="font-semibold">liked_by_user and others</p>
                 <div className="space-y-2">
                   <div>
-                    <span className="font-semibold">{data1.author} </span>
-                    <span>{data1.postContent}</span>
+                    <span className="font-semibold">{data1.User.user_id} </span>
+                    <span>{data1.content}</span>
                   </div>
-                  <div>
+                  {/* <div>
                     <span className="font-semibold">{data1.commentAuthor}</span>
                     <span>{data1.comment}</span>
-                  </div>
+                  </div> */}
                 </div>
                 <p className="text-sm text-gray-500 pt-2">View all comments</p>
               </div>
@@ -123,7 +135,7 @@ function Mainpage() {
             </div>
           ))}
         </div>
-        <div className="w-[300px]">
+        <div className="w-[300px] mx-5 hidden xl:block">
           {/*오른쪽 부분*/}
           <div className="flex items-center justify-between pt-3">
             <div className="flex">

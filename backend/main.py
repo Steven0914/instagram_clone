@@ -49,7 +49,8 @@ async def hello(db: Session = Depends(get_db)):
             "id": 1,
             "author": "작성자1",
             "authorImage":
-                "https://health.chosun.com/site/data/img_dir/2023/07/17/2023071701753_0.jpg",
+                "",
+                # "https://health.chosun.com/site/data/img_dir/2023/07/17/2023071701753_0.jpg",
             "postImage":
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq75DiUEnXV_lTKsYK7oLxdoj0cyTeSp6329bGs93wHQ&s",
             "postContent": "리액트 너무 어려워",
@@ -77,7 +78,7 @@ async def get_posts(db: Session = Depends(get_db)):
     return items
 
 @app.post("/posts/")
-async def create_item(post: schema.PostCreate, db: Session = Depends(get_db)):
+async def create_post(post: schema.PostCreate, db: Session = Depends(get_db)):
     db_item = crud.create_post(db, post)
     return db_item
 

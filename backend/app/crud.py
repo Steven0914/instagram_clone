@@ -30,6 +30,13 @@ def delete_user(db: Session, user: User):
 
 # post
 
+def get_posts(db: Session):
+    return db.query(Post.id, Post.img, Post.content, Post.create_date, User).outerjoin(User, Post.writer_id == User.id).all()
+
+# fastapi query 문 조회시 컬럼에 별칭을 붙일수 없는가?
+# fastapi query 문 조회시 User model에 접근하는 경우 객체로 분리되는데 원하는 것만 뽑으려면 subquery를 사용해야만 하는가?
+# fastapi 데이터 get post시 spring처럼 dto를 만들어 사용할 수 있는가?
+
 def get_post(db: Session, id: int):
     return db.query(Post).filter(Post.id == id).first()
 

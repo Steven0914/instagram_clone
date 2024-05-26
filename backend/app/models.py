@@ -7,6 +7,7 @@ class User(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     user_id = Column(String(30))
     name = Column(String(30))
+    img = Column(String(30))
     description = Column(String(30))
 
 class Post(Base):

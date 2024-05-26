@@ -62,7 +62,7 @@ function Mypage() {
         ) : null)}
       <div className="pt-[30px] px-[20px] max-w-[1024px] mx-auto">
         <header className="flex mb-[40px]">
-          <div className="w-[300px] flex justify-center items-center pr-[30px]">
+          <div className="max-w-[300px] w-[100%] flex justify-center items-center pr-[30px]">
             <div
               className="max-w-[150px] min-w-[70px] w-full cursor-pointer"
               onClick={() => {
@@ -159,7 +159,7 @@ function Mypage() {
               <span className="text-[14px]">게시물</span>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-[4px]">
+          <div className="grid lg:grid-cols-3 gap-[4px] md:grid-cols-2 sm:grid-cols-1">
             {posts ? (
               posts.map((v, i) => (
                 <Link
