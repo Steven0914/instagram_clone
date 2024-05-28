@@ -13,14 +13,16 @@ function App() {
     else $("#content").css("width", `calc(100vw - ${size1.width}px - 10px)`);
   }, [size1]);
 
+  useEffect(() => {
+    if (size.width < 610) $("#main").addClass("flex-col h-[100vh]");
+    else $("#main").removeClass("flex-col h-[100vh]");
+  }, [size]);
+
+  // console.log("size", size);
+  // console.log("size1", size1);
+
   return (
-    <div
-      className={
-        "flex flex-row-reverse " +
-        (size.width < 610 ? "flex-col h-[100vh]" : "")
-      }
-      ref={componentRef}
-    >
+    <div className="flex flex-row-reverse " id="main" ref={componentRef}>
       <div
         id="content"
         className={
